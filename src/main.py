@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 
 from utils.sw1 import count_patterns
 from utils.sw2 import count_up_to_89
+from utils.sw3 import Container, calculate_min_moves
 
 app = FastAPI()
 
@@ -15,3 +16,10 @@ def obtener_patrones(n: int = Query(..., ge=0)):
 def cifrado_ciclos(n: int = Query(..., ge=0)):
     resultado = count_up_to_89(n)
     return JSONResponse(str(resultado))
+
+@app.post("/challenges/solution-3")
+def effective_recycling(data: Container):
+    result = calculate_min_moves(data.containers)
+    return {
+        result
+    }
