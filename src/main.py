@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
-def contar_patrones(n: int) -> int:
+def count_patterns(n: int) -> int:
     if n < 0:
         return 0
     dp = [0] * (n + 2)
@@ -16,5 +16,5 @@ def contar_patrones(n: int) -> int:
 
 @app.get("/challenges/solution-1")
 def obtener_patrones(n: int = Query(..., ge=0)):
-    resultado = contar_patrones(n)
-    return JSONResponse(content={"distancia": n, "patrones": resultado})
+    resultado = count_patterns(n)
+    return JSONResponse(str(resultado))
