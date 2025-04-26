@@ -1,9 +1,4 @@
 from typing import List
-from pydantic import BaseModel
-
-
-class Container(BaseModel):
-    containers: List[List[int]]
 
 def calculate_min_moves(containers: List[List[int]]) -> int:
     from itertools import permutations
