@@ -1,20 +1,17 @@
 from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
 
-app = FastAPI()
+from utils.sw1 import count_patterns
+from utils.sw2 import count_up_to_89
 
-def count_patterns(n: int) -> int:
-    if n < 0:
-        return 0
-    dp = [0] * (n + 2)
-    dp[0] = 1
-    for i in range(1, n + 1):
-        dp[i] = dp[i - 1]
-        if i >= 2:
-            dp[i] += dp[i - 2]
-    return dp[n]
+app = FastAPI()
 
 @app.get("/challenges/solution-1")
 def obtener_patrones(n: int = Query(..., ge=0)):
     resultado = count_patterns(n)
+    return JSONResponse(str(resultado))
+
+@app.get("/challenges/solution-2")
+def cifrado_ciclos(n: int = Query(..., ge=0)):
+    resultado = count_up_to_89(n)
     return JSONResponse(str(resultado))
