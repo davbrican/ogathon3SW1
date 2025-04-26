@@ -1,17 +1,17 @@
 # Imagen base
 FROM python:3.10
 
-# Establece el directorio de trabajo
+# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos
-COPY main.py .
+# Copiar el código desde src/
+COPY ./src /app
 
-# Instala FastAPI y Uvicorn
+# Instalar dependencias
 RUN pip install fastapi uvicorn
 
-# Expone el puerto 8080
+# Exponer el puerto que usará FastAPI
 EXPOSE 8080
 
-# Comando para ejecutar la app
+# Comando para ejecutar la API
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
