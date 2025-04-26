@@ -6,7 +6,7 @@ from utils.sw1 import count_patterns
 from utils.sw2 import count_up_to_89
 from utils.sw3 import calculate_min_moves
 
-app = FastAPI()
+app = FastAPI(docs_url="/swagger")
 
 @app.get("/challenges/solution-1")
 def obtener_patrones(n: int = Query(..., ge=0)):
